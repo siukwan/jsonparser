@@ -74,16 +74,23 @@ class jsonparser:
 		解析值，包括string，数字
 		'''
 		c = self._str[self._index]
-		if c == '"':    
-			#string
-			self._index += 1
+		
+		if c == '{':
+			self._index+=1
 			self._skipBlank()
-			return self._parse_string()
+			return self._parse_object()
+
 		elif c == '[':
 			#array
 			self._index+=1
 			self._skipBlank()
 			return self._parse_array()
+
+		elif c == '"':    
+			#string
+			self._index += 1
+			self._skipBlank()
+			return self._parse_string()
 		elif c=='n' and self._str[self._index:self._index+4] == 'null':
 			#null
 			self._index+=4
