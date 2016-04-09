@@ -76,9 +76,14 @@ class jsonparser:
 		c = self._str[self._index]
 		if c == '"':    
 			#string
-			self._index = self._index+1
+			self._index += 1
 			self._skipBlank()
 			return self._parse_string()
+		elif c == '[':
+			#array
+			self._index+=1
+			self._skipBlank()
+			return self._parse_array()
 		elif c=='n' and self._str[self._index:self._index+4] == 'null':
 			#null
 			self._index+=4
@@ -93,6 +98,28 @@ class jsonparser:
 			return False
 		else:
 			return self._parse_number()
+
+	def _parse_array(self):
+		arr=[]
+		self._skipBlank()
+		#空数组
+		if self._str[self._index]==']':
+			self._index +=1
+			return arr
+		while True:
+			val = self._parse_value() #获取数组中的值，可能是string，obj等等
+			arr.append(val)           #添加到数组中
+			self._skipBlank()         #跳过空白
+			if self._str[self._index] == ',':
+				self._index += 1
+				self._skipBlank()
+			elif self._str[self._index] ==']':
+				self._index += 1
+				return arr
+			else:
+				print "array parse error!"
+				return None
+
 	def _parse_object(self):
 		obj={}
 		self._skipBlank()
