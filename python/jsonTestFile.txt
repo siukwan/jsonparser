@@ -16,6 +16,8 @@
         "zero": 0,
         "one": 1,
         "space": " ",
+        "singlequote": "'\"",
+        "singlequote2": "'",
         "quote": "\"",
         "backslash": "\\",
         "controls": "\b\f\n\r\t",

@@ -52,7 +52,11 @@ class jsonparser:
 		begin = end =self._index
 		#找到string的范围
 		while self._str[end]!='"':
-			end=end+1
+			if self._str[end]=='\\': #重点！出现\，表明其后面的是配合\的转义符号，如\",\t,\r，主要针对\"的情况
+				end+=1
+				if self._str[end] not in '"\\/bfnrtu':
+					print
+			end+=1
 		self._index = end+1
 		return self._str[begin:end]
 
@@ -180,8 +184,8 @@ class jsonparser:
 #main函数
 if __name__ == '__main__':
 	print "test"
-	jsonStr=txt2str()
-	jsonInstance=jsonparser(jsonStr)
+	'''
+	jsonInstance=jsonparser(txt2str())
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
 	print jsonTmp['obj1']['family']['father']
@@ -192,7 +196,7 @@ if __name__ == '__main__':
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
 	print ' '
+	'''
 	jsonInstance=jsonparser(txt2str('jsonTestFile.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
-	jsonInstance.display()
