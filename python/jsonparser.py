@@ -217,3 +217,6 @@ if __name__ == '__main__':
 	jsonInstance=jsonparser(txt2str('jsonTestFile.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
+	jsonInstance=jsonparser(txt2str('json.txt'))
+	jsonTmp = jsonInstance.parse()
+	print jsonTmp
