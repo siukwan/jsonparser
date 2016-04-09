@@ -25,7 +25,14 @@
         "age":19,
         "married":false,
         "lived":true,
-        "house":null
+        "house":null,
+        "family":
+        {
+            "brother":"john",
+            "sister":null,
+            "father":123,
+            "mother":456
+        }
     },
     "o": "ou",
     "h": "hh",

@@ -179,4 +179,6 @@ if __name__ == '__main__':
 	jsonInstance=jsonparser(jsonStr)
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
+	print jsonTmp['obj1']['family']['father']
+	print jsonTmp['obj1']['family']['sister']
 	jsonInstance.display()
