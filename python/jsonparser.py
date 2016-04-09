@@ -73,10 +73,24 @@ class jsonparser:
 		'''
 		解析值，包括string，数字
 		'''
-		if self._str[self._index] == '"':
+		c = self._str[self._index]
+		if c == '"':    
+			#string
 			self._index = self._index+1
 			self._skipBlank()
 			return self._parse_string()
+		elif c=='n' and self._str[self._index:self._index+4] == 'null':
+			#null
+			self._index+=4
+			return None
+		elif c=='t' and self._str[self._index:self._index+4] == 'true':
+			#true
+			self._index+=4
+			return True
+		elif c=='f' and self._str[self._index:self._index+5] == 'false':
+			#false
+			self._index+=5
+			return False
 		else:
 			return self._parse_number()
 	def _parse_object(self):
@@ -102,7 +116,7 @@ class jsonparser:
 			#获取value值,目前假设只有string的value和数字
 			obj[key]= self._parse_value()
 			self._skipBlank()
-			print key,":",obj[key]
+			#print key,":",obj[key]
 			#对象结束了，break
 			if self._str[self._index]=='}':
 				self._index +=1

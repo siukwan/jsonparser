@@ -12,4 +12,7 @@
     "v": "vv"
     "number": 123
     "float":  11.23
+    "NULL":     null
+    "TRUE":     true
+    "FLASE":    false
 }
