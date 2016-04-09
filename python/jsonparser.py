@@ -40,6 +40,11 @@ class jsonparser:
 		if self._str[self._index]=='{':
 			self._index+=1
 			return self._parse_object()
+		elif self._str[self._index] == '[':
+			self._index+=1
+			return self._parse_array()
+		else:
+			print "Json format error!"
 	def _parse_string(self):
 		'''
 		找出两个双引号中的string
@@ -181,4 +186,9 @@ if __name__ == '__main__':
 	print jsonTmp
 	print jsonTmp['obj1']['family']['father']
 	print jsonTmp['obj1']['family']['sister']
+
+
+	jsonInstance=jsonparser(txt2str('jsondataArray.txt'))
+	jsonTmp = jsonInstance.parse()
+	print jsonTmp
 	jsonInstance.display()

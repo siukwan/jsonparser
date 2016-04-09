@@ -1,0 +1,48 @@
+[
+        "TWGD",
+        "GT",
+        "XAG",
+        "XPD",
+        "XAP",
+        "XAU",
+        "XPT",
+        {
+            "t": 
+            [
+                "1459544399",
+                1459537180,
+                1459781567,
+                1459781550,
+                1459781564,
+                1459781571,
+                1456766398
+            ],
+            "obj1": 
+            {
+                "name1":"mary",
+                "age":19,
+                "married":false,
+                "lived":true,
+                "house":null,
+                "family":
+                {
+                    "brother":"john",
+                    "sister":null,
+                    "father":123,
+                    "mother":456
+                }
+            },
+            "o": "ou",
+            "h": "hh",
+            "l": "ll",
+            "b": "bb",
+            "se":"sese",
+            "p": "pp",
+            "v": "vv"
+            "number": 123
+            "float":  11.23
+            "NULL":     null
+            "TRUE":     true
+            "FLASE":    false
+        }
+]
