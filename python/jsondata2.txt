@@ -10,4 +10,6 @@
     "se":"sese",
     "p": "pp",
     "v": "vv"
+    "number": 123
+    "float":  11.23
 }

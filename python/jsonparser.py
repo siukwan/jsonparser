@@ -78,8 +78,6 @@ class jsonparser:
 			self._skipBlank()
 			return self._parse_string()
 		else:
-			self._index = self._index+1
-			self._skipBlank()
 			return self._parse_number()
 	def _parse_object(self):
 		obj={}
@@ -121,12 +119,9 @@ class jsonparser:
 		displayStr=""
 		self._skipBlank()
 		while self._index<len(self._str):
-			#print self._str[self._index],
-			#print "%s"%self._str[self._index],
 			displayStr=displayStr+self._str[self._index]
 			self._index=self._index+1
 			self._skipBlank()
-			#print self._index
 		print displayStr
 
 #main函数
@@ -134,5 +129,6 @@ if __name__ == '__main__':
 	print "test"
 	jsonStr=txt2str()
 	jsonInstance=jsonparser(jsonStr)
-	dir(jsonInstance.parse())
+	jsonTmp = jsonInstance.parse()
+	print jsonTmp
 	jsonInstance.display()
