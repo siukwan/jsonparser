@@ -9,6 +9,9 @@ sys.setdefaultencoding('utf8')
 import json
 
 def txt2str(file='jsondata2.txt'):
+	'''
+	打开指定的json文件
+	'''
 	fp=open(file)
 	allLines = fp.readlines()
 	fp.close()
@@ -36,6 +39,9 @@ class jsonparser:
 		while self._index<len(self._str) and self._str[self._index] in ' \n\t\r':
 			self._index=self._index+1
 	def parse(self):
+		'''
+		进行解析的主要函数
+		'''
 		self._skipBlank()
 		if self._str[self._index]=='{':
 			self._index+=1
@@ -84,38 +90,46 @@ class jsonparser:
 		'''
 		c = self._str[self._index]
 		
+		#解析对象
 		if c == '{':
 			self._index+=1
 			self._skipBlank()
 			return self._parse_object()
-
+		#解析数组
 		elif c == '[':
 			#array
 			self._index+=1
 			self._skipBlank()
 			return self._parse_array()
-
+		#解析string
 		elif c == '"':    
 			#string
 			self._index += 1
 			self._skipBlank()
 			return self._parse_string()
+		#解析null
 		elif c=='n' and self._str[self._index:self._index+4] == 'null':
 			#null
 			self._index+=4
 			return None
+		#解析bool变量true
 		elif c=='t' and self._str[self._index:self._index+4] == 'true':
 			#true
 			self._index+=4
 			return True
+		#解析bool变量false
 		elif c=='f' and self._str[self._index:self._index+5] == 'false':
 			#false
 			self._index+=5
 			return False
+		#剩下的情况为number
 		else:
 			return self._parse_number()
 
 	def _parse_array(self):
+		'''
+		解析数组
+		'''
 		arr=[]
 		self._skipBlank()
 		#空数组
@@ -137,6 +151,9 @@ class jsonparser:
 				return None
 
 	def _parse_object(self):
+		'''
+		解析对象
+		'''
 		obj={}
 		self._skipBlank()
 		#空object
