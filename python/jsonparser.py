@@ -187,8 +187,12 @@ if __name__ == '__main__':
 	print jsonTmp['obj1']['family']['father']
 	print jsonTmp['obj1']['family']['sister']
 
-
+	print ' '
 	jsonInstance=jsonparser(txt2str('jsondataArray.txt'))
+	jsonTmp = jsonInstance.parse()
+	print jsonTmp
+	print ' '
+	jsonInstance=jsonparser(txt2str('jsonTestFile.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
 	jsonInstance.display()
