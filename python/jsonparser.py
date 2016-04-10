@@ -197,6 +197,45 @@ class jsonparser:
 			self._skipBlank()
 		print displayStr
 
+
+def _to_str(pv):
+	'''把python变量转换成string'''
+	_str=''
+	if type(pv) == type({}):
+		#处理对象
+		_str+='{'
+		_noNull = False
+		for key in pv.keys():
+			if type(key) == type(''):
+				_noNull = True #对象非空
+				_str+='"'+key+'":'+_to_str(pv[key])+','
+		if _noNull:
+			_str = _str[:-1] #把最后的逗号去掉
+		_str +='}'
+
+	elif type(pv) == type([]):
+		#处理数组
+		_str+='['
+		if len(pv) >0: #数组不为空,方便后续格式合并
+			_str += _to_str(pv[0])
+		for i in range(1,len(pv)):
+			_str+=','+_to_str(pv[i])#因为已经合并了第一个，所以可以加逗号
+		_str+=']'
+
+	elif type(pv) == type(''): 
+		#字符串
+		_str = '"'+pv+'"'
+	elif pv == True:
+		_str+='true'
+	elif pv == False:
+		_str+='false'
+	elif pv == None:
+		_str+='null'
+	else:
+		_str = str(pv)
+	return _str
+
+
 #main函数
 if __name__ == '__main__':
 	print "test"
@@ -216,16 +255,11 @@ if __name__ == '__main__':
 	jsonInstance=jsonparser(txt2str('jsonTestFile.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
-	if type(jsonTmp) == type({}):
-		print "Dictionary"
-	else:
-		print "Array"
+	print _to_str(jsonTmp)
 
+	print ' '
 	jsonInstance=jsonparser(txt2str('json.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
 
-	if type(jsonTmp) == type({}):
-		print "Dictionary"
-	else:
-		print "Array"
+	print _to_str(jsonTmp)
