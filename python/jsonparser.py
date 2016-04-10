@@ -5,7 +5,6 @@ Author:Siukwan
 import sys  
 reload(sys)   
 sys.setdefaultencoding('utf8')  
-
 import json
 
 def txt2str(file='jsondata2.txt'):
@@ -217,6 +216,16 @@ if __name__ == '__main__':
 	jsonInstance=jsonparser(txt2str('jsonTestFile.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
+	if type(jsonTmp) == type({}):
+		print "Dictionary"
+	else:
+		print "Array"
+
 	jsonInstance=jsonparser(txt2str('json.txt'))
 	jsonTmp = jsonInstance.parse()
 	print jsonTmp
+
+	if type(jsonTmp) == type({}):
+		print "Dictionary"
+	else:
+		print "Array"
